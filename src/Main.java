@@ -24,19 +24,20 @@ public class Main {
         while (num != 6) {
 //
             if (num == 1) {
-                System.out.printf("Введите желаемое ОЗУ в гб от 2 до 32: ");
+                System.out.print("Введите желаемое ОЗУ в гб от 2 до 32: ");
                 findOzu = scanner.nextInt();
                 num = ask();
             }
             if (num == 2) {
-                System.out.printf("Введите желаемый Объём в гб от 128 до 2048: ");
+                System.out.print("Введите желаемый Объём в гб от 128 до 2048: ");
                 findDisk = scanner.nextInt();
                 num = ask();
             }
             if (num == 3) {
-                System.out.printf("Введите желаемую ОС :\n" +
-                        "7 - Windows 7\n" +
-                        "10 - Windows 10 ");
+                System.out.print("""
+                        Введите желаемую ОС :
+                        7 - Windows 7
+                        10 - Windows 10\s""");
                 int answer = scanner.nextInt();
                 if (answer == 7) {
                     findOC = "Windows 7";
@@ -47,11 +48,12 @@ public class Main {
                 num = ask();
             }
             if (num == 4) {
-                System.out.printf("Введите желаемый цвет: \n" +
-                        "1 - Black\n" +
-                        "2 - White\n" +
-                        "3 - Red\n" +
-                        "4 - Blue");
+                System.out.print("""
+                        Введите желаемый цвет:\s
+                        1 - Black
+                        2 - White
+                        3 - Red
+                        4 - Blue""");
                 int answer = scanner.nextInt();
                 if (answer == 1) {
                     findColor = "Black";
@@ -75,21 +77,19 @@ public class Main {
             }
 
         }
-        if (num == 6) {
-            List<Notebook> res = new ArrayList<>();
-            for (Notebook notebook : set) {
-                if (((notebook.op.equals(findOC)|findOC.equals("a"))
-                        && (notebook.disk >= findDisk)
-                        && (notebook.ozu >= findOzu))
-                        && (notebook.color.equals(findColor)|findColor.equals("a"))) {
+        List<Notebook> res = new ArrayList<>();
+        for (Notebook notebook : set) {
+            if (((notebook.op.equals(findOC)|findOC.equals("a"))
+                    && (notebook.disk >= findDisk)
+                    && (notebook.ozu >= findOzu))
+                    && (notebook.color.equals(findColor)|findColor.equals("a"))) {
 
-                    res.add(notebook);
-                }
+                res.add(notebook);
+            }
 
-            }
-            for (Notebook notebook : res) {
-                System.out.println(notebook);
-            }
+        }
+        for (Notebook notebook : res) {
+            System.out.println(notebook);
         }
     }
 
@@ -98,15 +98,15 @@ public class Main {
 
     private static Integer ask() {
         Scanner scanner=new Scanner(System.in);
-        System.out.print("1 - ОЗУ\n" +
-                "2 - Объем ЖД\n" +
-                "3 - Операционная система\n" +
-                "4 - Цвет\n" +
-                "5 - Показать все ноутбуки\n" +
-                "6 - Показать подходящие ноубуки: \n" +
-                "Введите цифру, соответствующую необходимому критерию:");
-        int num = scanner.nextInt();
-        return num;
+        System.out.print("""
+                1 - ОЗУ
+                2 - Объем ЖД
+                3 - Операционная система
+                4 - Цвет
+                5 - Показать все ноутбуки
+                6 - Показать подходящие ноубуки:\s
+                Введите цифру, соответствующую необходимому критерию:""");
+        return scanner.nextInt();
     }
 
 }
